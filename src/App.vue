@@ -1,12 +1,21 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+    <nav-bar></nav-bar>
     <router-view/>
+    <app-footer></app-footer>
   </div>
 </template>
+
+<script>
+import NavBar from '@/components/NavBar.vue'
+import AppFooter from '@/components/Footer.vue'
+
+export default {
+  components: {
+    NavBar, AppFooter
+  }
+}
+</script>
 
 <style>
 @import '~@/plugins/bootstrap/bootstrap.min.css';
