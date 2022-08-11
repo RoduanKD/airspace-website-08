@@ -17,6 +17,7 @@
                 <li class="nav-item active">
                   <router-link class="nav-link" to="/">Home</router-link>
                 </li>
+                <li class="nav-item @@portfolio"><router-link class="nav-link" to="/portfolio">Portfolio</router-link></li>
                 <li class="nav-item @@service"><router-link class="nav-link" to="/service">Service</router-link></li>
                 <li class="nav-item @@contact"><router-link class="nav-link" to="/contact">Contact</router-link></li>
               </ul>
