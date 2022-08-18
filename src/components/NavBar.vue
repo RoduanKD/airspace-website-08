@@ -8,11 +8,11 @@
               <img src="@/images/logo.png" alt="Logo">
             </router-link>
 
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" :class="{collapsed: !isOpen}" type="button" @click="isOpen = !isOpen" :aria-expanded="isOpen" aria-label="Toggle navigation">
               <span class="ion-android-menu"></span>
             </button>
 
-            <div class="collapse navbar-collapse ml-auto" id="navbarsExample09">
+            <div class="collapse navbar-collapse ml-auto" :class="{show: isOpen}" id="navbarsExample09">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                   <router-link class="nav-link" to="/">Home</router-link>
@@ -29,3 +29,11 @@
     </div>
   </header>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    isOpen: false
+  })
+}
+</script>

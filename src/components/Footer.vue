@@ -5,9 +5,9 @@
       <div class="col-md-12">
         <div class="footer-manu">
           <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact us</a></li>
-            <li><a href="service.html">How it works</a></li>
+            <li><router-link to="/about">About Us</router-link></li>
+            <li><router-link to="/contact">Contact us</router-link></li>
+            <li><router-link to="/service">How it works</router-link></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="pricing.html">Pricing</a></li>
           </ul>
