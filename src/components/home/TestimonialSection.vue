@@ -15,40 +15,13 @@
       <div class="col-md-6">
         <div class="block">
           <ul class="counter-box clearfix">
-            <li>
+            <li v-for="(stat) in stats" :key="stat.title">
               <div class="counter-item">
                 <i class="ion-ios-chatboxes-outline"></i>
                 <h4>
-                  <count-to ref="countTo1" class="count" :end-val="99" :duration="1000" :autoplay="false">0</count-to>
+                  <count-to ref="countTo" class="count" :end-val="stat.number" :duration="1000" :autoplay="false">0</count-to>
                 </h4>
-                <span>Cups Of Coffee</span>
-              </div>
-            </li>
-            <li>
-              <div class="counter-item">
-                <i class="ion-ios-glasses-outline"></i>
-                <h4>
-                  <count-to ref="countTo2" class="count" :end-val="45" :duration="1000" :autoplay="false">0</count-to>
-                </h4>
-                <span>Article Written</span>
-              </div>
-            </li>
-            <li>
-              <div class="counter-item">
-                <i class="ion-ios-compose-outline"></i>
-                <h4>
-                  <count-to ref="countTo3" class="count" :end-val="125" :duration="1000" :autoplay="false">0</count-to>
-                </h4>
-                <span>Projects Completed</span>
-              </div>
-            </li>
-            <li>
-              <div class="counter-item">
-                <i class="ion-ios-timer-outline"></i>
-                <h4>
-                  <count-to ref="countTo4" class="count" :end-val="200" :duration="1000" :autoplay="false">0</count-to>
-                </h4>
-                <span>Combined Projects</span>
+                <span>{{ stat.title }}</span>
               </div>
             </li>
           </ul>
@@ -73,22 +46,48 @@ export default {
   },
 
   data: () => ({
-    started: false
+    stats: [
+      {
+        title: 'Cup of Coffee',
+        number: 99,
+        started: false
+      },
+      {
+        title: 'Article',
+        number: 45,
+        started: false
+      },
+      {
+        title: 'Projects',
+        number: 125,
+        started: false
+      },
+      {
+        title: 'Combined',
+        number: 200,
+        started: false
+      }
+    ]
   }),
 
   mounted () {
-    // document.querySelector('.count')
-    const self = this
-    document.addEventListener('scroll', function (e) {
-      // console.log(window.scrollY)
-      if (self.$refs.countTo1.$el.getBoundingClientRect().top - window.innerHeight < -300 && !this.started) {
-        self.$refs.countTo1.start()
-        self.$refs.countTo2.start()
-        self.$refs.countTo3.start()
-        self.$refs.countTo4.start()
-        this.started = true
-      }
-    })
+    document.addEventListener('scroll', this.startCounter)
+  },
+
+  beforeDestroy () {
+    document.removeEventListener('scroll', this.startCounter)
+  },
+
+  methods: {
+    startCounter () {
+      const self = this
+      self.$refs.countTo.forEach((count, i) => {
+        if (count.$el.getBoundingClientRect().top - window.innerHeight < -300 && !self.stats[i].started) {
+          count.start()
+          self.stats[i].started = true
+        }
+      })
+    }
   }
 }
 </script>
