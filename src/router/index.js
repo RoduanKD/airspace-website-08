@@ -24,6 +24,12 @@ const routes = [
     path: '/blog',
     name: 'blog',
     component: () => import(/* webpackChunkName: "blog" */ '../views/PostsView.vue')
+  },
+  {
+    path: '/blog/:id',
+    name: 'blog.single',
+    component: () => import(/* webpackChunkName: "blog.single" */ '../views/PostView.vue'),
+    props: true
   }
 ]
 

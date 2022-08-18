@@ -26,7 +26,7 @@
           </div>
           <div class="post-content">
             <p>{{ post.text }}</p>
-            <a href="blog-single.html" class="btn btn-main">Read More</a>
+            <router-link :to="'/blog/' + post.id" class="btn btn-main">Read More</router-link>
           </div>
         </div>
       </div>
