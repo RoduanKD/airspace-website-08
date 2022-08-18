@@ -1,6 +1,7 @@
 <template>
   <div class="testimonial-carousel text-center">
     <vue-slick-carousel
+      v-if="slides.length"
       class="testimonial-slider owl-carousel"
       :arrows="false"
       :dots="false"
@@ -27,40 +28,25 @@ export default {
   },
 
   data: () => ({
-    slides: [
-      {
-        text: '"This Company created an e-commerce site with the tools to make our business a success, with innovative ideas we feel that our site has unique elements that make us stand out from the crowd."',
-        image: require('@/images/item-img1.jpg'),
+    api_slides: []
+  }),
+
+  computed: {
+    slides () {
+      return this.api_slides.map(slide => ({
+        text: `"${slide.message}"`,
+        image: slide.avatar,
         author: {
-          name: 'Rose Ray',
-          job: 'CEO-Themefisher'
+          name: slide.name,
+          job: slide.designation
         }
-      },
-      {
-        text: '"This Company created an e-commerce site with the tools to make our business a success, with innovative ideas we feel that our site has unique elements that make us stand out from the crowd."',
-        image: require('@/images/item-img1.jpg'),
-        author: {
-          name: 'Rose Ray',
-          job: 'CEO-Themefisher'
-        }
-      },
-      {
-        text: '"This Company created an e-commerce site with the tools to make our business a success, with innovative ideas we feel that our site has unique elements that make us stand out from the crowd."',
-        image: require('@/images/item-img1.jpg'),
-        author: {
-          name: 'Rose Ray',
-          job: 'CEO-Themefisher'
-        }
-      },
-      {
-        text: '"This Company created an e-commerce site with the tools to make our business a success, with innovative ideas we feel that our site has unique elements that make us stand out from the crowd."',
-        image: require('@/images/item-img1.jpg'),
-        author: {
-          name: 'Rose Ray',
-          job: 'CEO-Themefisher'
-        }
-      }
-    ]
-  })
+      }))
+    }
+  },
+
+  async created () {
+    const res = await this.axios.get('https://testimonialapi.toolcarton.com/api')
+    this.api_slides = res.data
+  }
 }
 </script>
