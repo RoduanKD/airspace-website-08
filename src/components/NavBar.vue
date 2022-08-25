@@ -20,7 +20,14 @@
                 <li class="nav-item @@portfolio"><router-link class="nav-link" to="/portfolio">Portfolio</router-link></li>
                 <li class="nav-item @@service"><router-link class="nav-link" to="/service">Service</router-link></li>
                 <li class="nav-item @@contact"><router-link class="nav-link" to="/contact">Contact</router-link></li>
-                <li class="nav-item @@blog"><router-link class="nav-link" to="/blog">Blog</router-link></li>
+                <li class="nav-item @@blog"><router-link class="nav-link" to="/blog">{{ $t('navbar.blog') }}</router-link></li>
+                <li class="nav-item @@blog">
+                  <select v-model="$i18n.locale" class="form-control">
+                  <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
+                    {{ lang }}
+                  </option>
+                </select>
+                </li>
               </ul>
             </div>
           </nav>
@@ -33,7 +40,8 @@
 <script>
 export default {
   data: () => ({
-    isOpen: false
+    isOpen: false,
+    langs: ['ar', 'en']
   })
 }
 </script>

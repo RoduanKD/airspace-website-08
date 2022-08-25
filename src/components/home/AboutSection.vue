@@ -5,7 +5,7 @@
         <div class="col-md-7">
           <div class="block">
             <div class="section-title">
-              <h2>About Us</h2>
+              <h2>{{ $t('about.title') }}</h2>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
                 blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
             </div>
